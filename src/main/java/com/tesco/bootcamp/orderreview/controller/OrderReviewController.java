@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class OrderReviewController {
-    
-    @Autowired
-    OrderReviewService orderReviewService;
 
-    @RequestMapping("/order-review")
-    public void getOrdersToReview(Model model, @RequestParam(value="customerID", required=true) String customerID) {
-        model.addAttribute("customerName", orderReviewService.getCustomerName(customerID));
-    }
+  @Autowired
+  OrderReviewService orderReviewService;
+
+  @RequestMapping("/order-review")
+  public void getOrdersToReview(Model model,
+      @RequestParam(value = "customerID", required = true) String customerID) {
+    model.addAttribute("customerName", orderReviewService.getCustomerName(customerID));
+  }
 }
