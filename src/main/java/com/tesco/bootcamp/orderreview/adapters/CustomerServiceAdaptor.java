@@ -14,22 +14,22 @@ import org.springframework.web.client.RestTemplate;
  */
 
 @Component
-public class CustomerServiceAdapter {
+public class CustomerServiceAdaptor {
 
 
-    private final String customerApiURi;
+    private String customerApiURi = null;
 
-    public CustomerServiceAdapter() {
-        this.customerApiURi = null;
+    public CustomerServiceAdaptor() {
+//        this.customerApiURi = null;
     }
 
     @Autowired
-    public CustomerServiceAdapter(String customerID, @Qualifier("customerServiceURL") String url){
+    public CustomerServiceAdaptor(@Qualifier("customerServiceURL") String url){
         this.customerApiURi = url;
 
    }
 
-    public String connect(String customerID) {
+    public String call(String customerID) {
         RestTemplate restTemplate = new RestTemplate();
 
         try{
