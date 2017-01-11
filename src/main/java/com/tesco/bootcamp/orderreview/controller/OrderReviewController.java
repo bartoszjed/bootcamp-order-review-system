@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class OrderReviewController {
 
+
+
   @Autowired
   OrderReviewService orderReviewService;
+
+  public OrderReviewController(){
+    
+  }
 
   public OrderReviewController(OrderReviewService orderReviewService) {
     this.orderReviewService = orderReviewService;
