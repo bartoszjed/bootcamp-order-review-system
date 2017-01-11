@@ -12,7 +12,8 @@ public class Product {
     private String category;
 
     @JsonCreator
-    public Product(@JsonProperty("category") String category, @JsonProperty("name") String name) {
+    public Product(@JsonProperty("name") String name,
+                   @JsonProperty("category") String category) {
         this.category = category;
         this.name = name;
     }
