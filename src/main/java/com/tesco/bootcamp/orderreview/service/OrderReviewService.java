@@ -19,7 +19,6 @@ public class OrderReviewService {
 
     public String getCustomerName(String customerID) {
         RestTemplate restTemplate = new RestTemplate();
-        //String url = "http://customers.dev-environment.tesco.codurance.io:8080/customer?login=";
         try {
             ResponseEntity<Customer> collectRequestResult = restTemplate.exchange(
                     customerAPiURi+"/customer?login=" + customerID+"&password=Password!23",
@@ -28,13 +27,9 @@ public class OrderReviewService {
                     new ParameterizedTypeReference<Customer>() {
                     });
             return collectRequestResult.getBody().getCustomerName().toString();
-            //logger.info("Collecting parcels from the shop code: " + collectRequestResult.getStatusCode());
-
 
         } catch (Exception e) {
-            //logger.error("Parcels cannot be collected from the shop", e);
-            throw new RuntimeException("Parcels cannot be collected from the shop", e);
+            throw new RuntimeException(e);
         }
     }
-
 }
