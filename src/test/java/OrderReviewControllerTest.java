@@ -10,7 +10,7 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.springframework.ui.Model;
 
-public class OrderReviewControllerShould {
+public class OrderReviewControllerTest {
 
   public static final String CUSTOMER_NAME_FIELD_ID = "customerName";
   public static final String CUSTOMER_NAME = "Mr Richy";
@@ -26,7 +26,7 @@ public class OrderReviewControllerShould {
   public MockitoRule mockitoRule = MockitoJUnit.rule();
 
   @Test
-  public void orderReviewServiceGetCustomerNameWhenGetOrderReviewIsCalled() {
+  public void shouldGetCustomerNameWhenGetOrderReviewIsCalled() {
 
     //Given
     OrderReviewController orderReviewController = new OrderReviewController(orderReviewService);
