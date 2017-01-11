@@ -1,0 +1,55 @@
+{
+	"id": "df785867-58a7-8e53-1196-0d264c67e0b4",
+	"name": "Order Review Service",
+	"description": "",
+	"order": [
+		"13ed659d-46ef-4b6d-1f9c-405ed15ef0ff",
+		"676424b2-dd01-fec6-c340-2e423046c9f0"
+	],
+	"folders": [],
+	"timestamp": 1484128634769,
+	"owner": "148657",
+	"public": false,
+	"requests": [
+		{
+			"id": "13ed659d-46ef-4b6d-1f9c-405ed15ef0ff",
+			"headers": "",
+			"url": "http://orders.dev-environment.tesco.codurance.io:8080/ghs/orders/customer?customerId=1",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "df785867-58a7-8e53-1196-0d264c67e0b4",
+			"data": null,
+			"dataMode": "params",
+			"name": "ORder Service - Get Customer Orders",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1484128634769,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "676424b2-dd01-fec6-c340-2e423046c9f0",
+			"headers": "",
+			"url": "http://customers.dev-environment.tesco.codurance.io:8080/customer?login=KayleighJohnston1&password=Password!23",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "df785867-58a7-8e53-1196-0d264c67e0b4",
+			"data": null,
+			"dataMode": "params",
+			"name": "Customer Service - Get Customer Name",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1484128666175,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
