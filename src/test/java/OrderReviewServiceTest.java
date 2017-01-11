@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Value;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class OrderReviewServiceShould {
+public class OrderReviewServiceTest {
 
   @Test
-  public void returnCustomerNameWhenCustomerIDIsPassed() {
+  public void shouldReturnCustomerNameWhenCustomerIDIsPassed() {
     //Given
     OrderReviewService orderReviewService = new OrderReviewService("");
     //When
