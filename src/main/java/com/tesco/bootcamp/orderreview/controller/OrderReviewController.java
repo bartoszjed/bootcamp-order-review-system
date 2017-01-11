@@ -13,6 +13,10 @@ public class OrderReviewController {
   @Autowired
   OrderReviewService orderReviewService;
 
+  public OrderReviewController(OrderReviewService orderReviewService) {
+    this.orderReviewService = orderReviewService;
+  }
+
   @RequestMapping("/order-review")
   public void getOrdersToReview(Model model,
       @RequestParam(value = "customerID", required = true) String customerID) {
