@@ -13,21 +13,27 @@ public class CustomerOrder {
 
     private String id;
     private Customer customer;
-    private List<Product> productList;
+    private List<Product> products;
     private OrderDestination orderDestination;
-    private String orderDateAndTime;
+    private String orderDateTime;
+    private String orderStatus;
 
     @JsonCreator
     public CustomerOrder(@JsonProperty("id") String id,
                          @JsonProperty("customer") Customer customer,
-                         @JsonProperty("products") List<Product> productList,
+                         @JsonProperty("productList") List<Product> products,
                          @JsonProperty("orderDestination") OrderDestination orderDestination,
-                         @JsonProperty("orderDateTime") String orderDateAndTime) {
+                         @JsonProperty("orderDateTime") String orderDateTime) {
         this.id = id;
         this.customer = customer;
-        this.productList = productList;
+        this.products = products;
         this.orderDestination = orderDestination;
-        this.orderDateAndTime = orderDateAndTime;
+        this.orderDateTime = orderDateTime;
+        this.orderStatus = "* unknown*";
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public String getId() {
@@ -38,15 +44,19 @@ public class CustomerOrder {
         return customer;
     }
 
-    public List<Product> getProductList() {
-        return productList;
+    public List<Product> getProducts() {
+        return products;
     }
 
     public OrderDestination getOrderDestination() {
         return orderDestination;
     }
 
-    public String getOrderDateAndTime() {
-        return orderDateAndTime;
+    public String getOrderDateTime() {
+        return orderDateTime;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
     }
 }
