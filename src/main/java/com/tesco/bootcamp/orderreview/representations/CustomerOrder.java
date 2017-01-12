@@ -16,7 +16,6 @@ public class CustomerOrder {
     private List<Product> products;
     private OrderDestination orderDestination;
     private String orderDateTime;
-    private String orderStatus;
 
     @JsonCreator
     public CustomerOrder(@JsonProperty("id") String id,
@@ -29,11 +28,6 @@ public class CustomerOrder {
         this.products = products;
         this.orderDestination = orderDestination;
         this.orderDateTime = orderDateTime;
-        this.orderStatus = "* unknown*";
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
     }
 
     public String getId() {
@@ -56,7 +50,4 @@ public class CustomerOrder {
         return orderDateTime;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
-    }
 }

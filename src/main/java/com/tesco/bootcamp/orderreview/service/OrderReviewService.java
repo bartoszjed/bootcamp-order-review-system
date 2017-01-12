@@ -1,7 +1,9 @@
 package com.tesco.bootcamp.orderreview.service;
 
+import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.ParameterizedTypeReference;
@@ -20,12 +22,14 @@ public class OrderReviewService {
     @Value("${customerAPi.url}")
     private String customerAPiURi;
 
+    @Autowired
+    OrderSystemAdaptor orderSystemAdaptor;
 
     public String getCustomerName(String customerID) {
         RestTemplate restTemplate = new RestTemplate();
         try {
             ResponseEntity<Customer> collectRequestResult = restTemplate.exchange(
-                    customerAPiURi+"/customer?login=" + customerID+"&password=Password!23",
+                    customerAPiURi + "/customer?login=" + customerID + "&password=Password!23",
                     HttpMethod.GET,
                     null,
                     new ParameterizedTypeReference<Customer>() {
@@ -37,10 +41,7 @@ public class OrderReviewService {
         }
     }
 
-    public List<CustomerOrder> getOrderList(String customerID){
-        List<CustomerOrder> listCustomer = new ArrayList<>();
-
-        return listCustomer;
-
+    public List<CustomerOrder> getOrderList(String customerID) {
+        return orderSystemAdaptor.call(customerID);
     }
 }
