@@ -1,4 +1,4 @@
-package com.tesco.bootcamp.orderreview.adapters;
+package com.tesco.bootcamp.orderreview.adaptor;
 
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +39,6 @@ public class CustomerServiceAdaptor {
             return collectRequestResult.getBody();
 
         }
-//        catch (HttpClientErrorException e2){
-//            return "Error: " + e2.getStatusCode().toString();
-//        }
         catch (Exception e) {
             throw new RuntimeException(e);
         }

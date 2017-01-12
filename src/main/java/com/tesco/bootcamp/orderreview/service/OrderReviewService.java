@@ -1,6 +1,6 @@
 package com.tesco.bootcamp.orderreview.service;
 
-import com.tesco.bootcamp.orderreview.adapters.CustomerServiceAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.CustomerServiceAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerOrder;

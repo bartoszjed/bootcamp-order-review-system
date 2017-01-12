@@ -1,4 +1,4 @@
-import com.tesco.bootcamp.orderreview.adapters.CustomerServiceAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.CustomerServiceAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.DummyOrderSystemAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
 import com.tesco.bootcamp.orderreview.representations.Customer;
