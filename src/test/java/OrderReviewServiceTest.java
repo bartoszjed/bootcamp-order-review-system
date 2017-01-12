@@ -14,9 +14,6 @@ import static org.junit.Assert.assertThat;
 
 public class OrderReviewServiceTest {
 
-//  private Object url;
-
-//    public static final String CUSTOMER_NAME_FIELD_ID = "customerName";
     public static final String CUSTOMER_NAME = "MR B";
     public static final String CUSTOMER_ID = "123434";
 
@@ -28,16 +25,6 @@ public class OrderReviewServiceTest {
 
   @Test
   public void shouldReturnCustomerNameWhenCustomerIDIsPassed() {
-
-
-//    //Given
-//    OrderReviewService adapter = new OrderReviewService("http://customers.dev-environment.tesco.codurance.io:8080");
-//    //When
-//    String customerID="BethJohnston5";
-//    //Then
-//    assertThat(adapter.getCustomerName(customerID),is("Beth Johnston"));
-
-
 
       //Given (mocking conditions)
       Mockito.when(adapter.call(CUSTOMER_ID)).thenReturn(CUSTOMER_NAME);

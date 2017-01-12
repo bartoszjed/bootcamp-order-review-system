@@ -14,7 +14,7 @@ public class OrderReviewService {
         this.customerAdapter = customerAdapter;
     }
 
-    public String getCustomerName(String customerID) {
-       return customerAdapter.call(customerID);
+    public String getCustomerName(String login) {
+       return customerAdapter.call(login);
     }
 }

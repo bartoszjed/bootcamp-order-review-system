@@ -29,12 +29,12 @@ public class CustomerServiceAdaptor {
 
    }
 
-    public String call(String customerID) {
+    public String call(String loginID) {
         RestTemplate restTemplate = new RestTemplate();
 
         try{
         ResponseEntity<Customer> collectRequestResult = restTemplate.exchange(
-                customerApiURi+"/customer?login=" + customerID+"&password=Password!23",
+                customerApiURi+"/customer?login=" + loginID+"&password=Password!23",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<Customer>() {
