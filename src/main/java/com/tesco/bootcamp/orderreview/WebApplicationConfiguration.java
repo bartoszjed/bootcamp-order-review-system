@@ -17,7 +17,4 @@ public class WebApplicationConfiguration {
     public String customerServiceURLMethod(){
         return customerServiceURL;
     }
-
-
-
 }

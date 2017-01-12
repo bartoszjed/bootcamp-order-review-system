@@ -28,12 +28,12 @@ public class OrderReviewControllerTest {
 
     //Given
     OrderReviewController orderReviewController = new OrderReviewController(orderReviewService);
-
-    //When
     Mockito.when(orderReviewService.getCustomerName(LOGIN_ID)).thenReturn(CUSTOMER_NAME);
 
-    //Then
+    //When
     orderReviewController.getOrdersToReview(model, LOGIN_ID);
+
+    //Then
     Mockito.verify(orderReviewService).getCustomerName(LOGIN_ID);
     Mockito.verify(model).addAttribute(CUSTOMER_NAME_FIELD_ID, orderReviewService.getCustomerName(LOGIN_ID));
   }

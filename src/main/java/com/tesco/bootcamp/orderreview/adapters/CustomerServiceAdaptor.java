@@ -16,30 +16,27 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class CustomerServiceAdaptor {
 
-
     private String customerApiURi = null;
 
     public CustomerServiceAdaptor() {
-//        this.customerApiURi = null;
     }
 
     @Autowired
-    public CustomerServiceAdaptor(@Qualifier("customerServiceURL") String url){
+    public CustomerServiceAdaptor(@Qualifier("customerServiceURL") String url) {
         this.customerApiURi = url;
-
-   }
+    }
 
     public String call(String loginID) {
         RestTemplate restTemplate = new RestTemplate();
 
-        try{
-        ResponseEntity<Customer> collectRequestResult = restTemplate.exchange(
-                customerApiURi+"/customer?login=" + loginID+"&password=Password!23",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<Customer>() {
-                });
-        return collectRequestResult.getBody().getCustomerName().toString();
+        try {
+            ResponseEntity<Customer> collectRequestResult = restTemplate.exchange(
+                    customerApiURi + "/customer?login=" + loginID + "&password=Password!23",
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<Customer>() {
+                    });
+            return collectRequestResult.getBody().getCustomerName().getFullName();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
