@@ -10,20 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class OrderReviewController {
 
+  private final OrderReviewService orderReviewService;
+
   @Autowired
-  OrderReviewService orderReviewService;
-
-  public OrderReviewController() {
-    super();
-  }
-
   public OrderReviewController(OrderReviewService orderReviewService) {
     this.orderReviewService = orderReviewService;
   }
 
   @RequestMapping("/order-review")
   public void getOrdersToReview(Model model,
-      @RequestParam(value = "customerID", required = true) String customerID) {
-    model.addAttribute("customerName", orderReviewService.getCustomerName(customerID));
+      @RequestParam(value = "loginID", required = true) String loginID) {
+    model.addAttribute("customerName", orderReviewService.getCustomerName(loginID));
   }
 }

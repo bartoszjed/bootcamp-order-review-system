@@ -25,8 +25,7 @@ public class CustomerName {
         return surname;
     }
 
-    @Override
-    public String toString() {
+    public String getFullName() {
         return getFirstName() + " " + getSurname();
     }
 }
