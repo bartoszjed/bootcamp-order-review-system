@@ -37,7 +37,7 @@ public class OrderReviewServiceTest {
 
       //Given (mocking conditions)
       Mockito.when(customerServiceAdaptor.call(LOGIN_ID)).thenReturn(CUSTOMER_NAME);
-      OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor);
+      OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor, orderSystemAdaptor);
 
       //When
       String expectedName = orderReviewService.getCustomerName(LOGIN_ID);

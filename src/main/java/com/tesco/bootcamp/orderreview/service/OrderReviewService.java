@@ -12,14 +12,7 @@ import java.util.List;
 public class OrderReviewService {
 
     private final CustomerServiceAdaptor customerAdapter;
-
-    @Autowired
-    OrderSystemAdaptor orderSystemAdaptor;
-
-    @Autowired
-    public OrderReviewService(CustomerServiceAdaptor customerAdapter){
-        this.customerAdapter = customerAdapter;
-    }
+    private final OrderSystemAdaptor orderSystemAdaptor;
 
     @Autowired
     public OrderReviewService(CustomerServiceAdaptor customerAdapter, OrderSystemAdaptor orderSystemAdaptor) {
