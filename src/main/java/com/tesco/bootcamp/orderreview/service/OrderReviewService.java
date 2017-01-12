@@ -21,6 +21,13 @@ public class OrderReviewService {
         this.customerAdapter = customerAdapter;
     }
 
+    @Autowired
+    public OrderReviewService(CustomerServiceAdaptor customerAdapter, OrderSystemAdaptor orderSystemAdaptor) {
+        this.customerAdapter = customerAdapter;
+        this.orderSystemAdaptor = orderSystemAdaptor;
+    }
+
+
     public String getCustomerName(String loginID) {
        return customerAdapter.call(loginID);
     }

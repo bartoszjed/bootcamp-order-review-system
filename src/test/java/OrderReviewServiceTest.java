@@ -1,6 +1,7 @@
-import builder.*;
 import com.tesco.bootcamp.orderreview.adapters.CustomerServiceAdaptor;
-import com.tesco.bootcamp.orderreview.representations.*;
+import com.tesco.bootcamp.orderreview.adaptor.DummyOrderSystemAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
+import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,23 +23,27 @@ public class OrderReviewServiceTest {
     public static final String LOGIN_ID = "123434";
 
     @Mock
-    CustomerServiceAdaptor adapter;
+    CustomerServiceAdaptor customerServiceAdaptor;
+
+    @Mock
+    OrderSystemAdaptor orderSystemAdaptor;
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
+    public static final String CUSTOMER_ID = "123456";
 
-  @Test
+    @Test
   public void shouldReturnCustomerNameWhenCustomerIDIsPassed() {
 
       //Given (mocking conditions)
-      Mockito.when(adapter.call(LOGIN_ID)).thenReturn(CUSTOMER_NAME);
-      OrderReviewService orderReviewService = new OrderReviewService(adapter);
+      Mockito.when(customerServiceAdaptor.call(LOGIN_ID)).thenReturn(CUSTOMER_NAME);
+      OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor);
 
       //When
       String expectedName = orderReviewService.getCustomerName(LOGIN_ID);
 
       //Then
-      Mockito.verify(adapter).call(LOGIN_ID);   //verifies if the mock was called with given customer_id
+      Mockito.verify(customerServiceAdaptor).call(LOGIN_ID);   //verifies if the mock was called with given customer_id
       assertThat(expectedName, is(CUSTOMER_NAME));
 
   }
@@ -48,52 +53,26 @@ public class OrderReviewServiceTest {
 
     //Given
     String customerId="123456";
-    OrderReviewService orderReviewService = new OrderReviewService(adapter);
+    Mockito.when(orderSystemAdaptor.call(customerId)).thenReturn(new ArrayList<CustomerOrder>());
+    OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor,orderSystemAdaptor);
 
     //When
     List<CustomerOrder> customerOrderList = orderReviewService.getOrderList(customerId);
 
     //Then
-    assertTrue(orderReviewService.getOrderList(customerId).size()>=0);
-
-
+    assertTrue(orderReviewService.getOrderList(customerId).size()==0);
   }
 
   @Test
   public void shouldReturnListOfOrdersForGivenCustomerId(){
 
     //Given
-    String customerId="123456";
-    OrderReviewService orderReviewService = new OrderReviewService();
+      OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor, new DummyOrderSystemAdaptor());
 
     //When
-    List<CustomerOrder> customerOrderList = orderReviewService.getOrderList(customerId);
+    List<CustomerOrder> customerOrderList = orderReviewService.getOrderList(CUSTOMER_ID);
 
     //Then
-    assertTrue(orderReviewService.getOrderList(customerId).size()>=0);
-
-    //Build List of Products
-    List<Product> productList= new ArrayList<Product>();
-    Product product= ProductBuilder.aProduct().withName("Beans").withCategory("Canned Food").build();
-    productList.add(product);
-    //Build Customer Name
-    CustomerName customerName = CustomerNameBuilder.aCustomerName().withFirstName("Alan").withSurname("Lamb").build();
-
-    //Build Customer
-    Customer customer = CustomerBuilder.aCustomer().withId(1).withCustomerName(customerName).build();
-    //Build Order Destination
-    OrderDestination orderDestination = OrderDestinationBuilder.anOrderDestination().withLatitude(23.50).withLongitude(45.00).build();
-
-    //Build Customer Order
-    CustomerOrderBuilder.aCustomerOrder()
-            .withId("12")
-            .withOrderDateAndTime("10-Jan-2017 15:00:00")
-            .withProductList(productList)
-            .withCustomer(customer)
-            .withOrderDestination(orderDestination)
-            .build();
-
+    assertTrue(orderReviewService.getOrderList(CUSTOMER_ID).size()>0);
   }
-
-
 }

@@ -19,7 +19,7 @@ public class OrderReviewController {
 
   @RequestMapping("/order-review")
   public void getOrdersToReview(Model model,
-      @RequestParam(value = "customerID", required = true) String loginID) {
+      @RequestParam(value = "loginID", required = true) String loginID) {
 
     model.addAttribute("customerName", orderReviewService.getCustomerName(loginID));
     model.addAttribute("customerOrders", orderReviewService.getOrderList(loginID));
