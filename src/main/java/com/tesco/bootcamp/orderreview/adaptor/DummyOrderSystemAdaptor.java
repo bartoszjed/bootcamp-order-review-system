@@ -23,6 +23,8 @@ public class DummyOrderSystemAdaptor implements OrderSystemAdaptor {
         products.add(new Product("Baked Beans","Tinned"));
         products.add(new Product("Petite Pois","Tinned"));
         products.add(new Product("Tomato Soup","Tinned"));
+        products.add(new Product("Spaghetti Hoops","Tinned"));
+        products.add(new Product("Tuna Chunks","Tinned"));
 
         Customer customer = new Customer(1,new CustomerName("Fred", "Bloggs"));
 
