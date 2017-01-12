@@ -7,6 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -38,7 +39,11 @@ public class CustomerServiceAdaptor {
                     });
             return collectRequestResult.getBody().getCustomerName().getFullName();
 
-        } catch (Exception e) {
+        }
+        catch (HttpClientErrorException e2){
+            return "Error: " + e2.getStatusCode().toString();
+        }
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
