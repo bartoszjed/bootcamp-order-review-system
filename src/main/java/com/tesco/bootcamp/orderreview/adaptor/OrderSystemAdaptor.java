@@ -12,6 +12,6 @@ import java.util.List;
 @Component
 public interface OrderSystemAdaptor {
 
-    public List<CustomerOrder> call(String customerId);
+    public List<CustomerOrder> call(int customerId);
 
 }

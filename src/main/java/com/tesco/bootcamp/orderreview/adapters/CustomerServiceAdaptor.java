@@ -26,7 +26,7 @@ public class CustomerServiceAdaptor {
         this.customerApiURi = url;
     }
 
-    public String call(String loginID) {
+    public Customer call(String loginID) {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
@@ -36,7 +36,7 @@ public class CustomerServiceAdaptor {
                     null,
                     new ParameterizedTypeReference<Customer>() {
                     });
-            return collectRequestResult.getBody().getCustomerName().getFullName();
+            return collectRequestResult.getBody();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
