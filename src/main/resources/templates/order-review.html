@@ -6,9 +6,9 @@
 </head>
 <body>
 
-    <p>Customer Order Review</p>
+    <h1>Customer Order Review</h1>
 
-    <p th:text="'Customer Name: ' + ${customerName}" />
+    <h2 th:text="'Customer Name: ' + ${customerName}" />
 
     <table>
 
@@ -18,7 +18,7 @@
             <td th:text="'Ordered Date: ' + ${customerOrder.orderDateTime}">Ordered Date: xxxxxxxxxx</td>
             <td th:text="'Destination: ' + ${customerOrder.orderDestination.latitude} + '/' + ${customerOrder.orderDestination.longitude}">Destination: 1/1</td>
 
-            <table>
+            <table border="1">
                 <tr>
                     <th>Name</th>
                     <th>Category</th>
