@@ -22,6 +22,9 @@ public class CustomerServiceAdaptorTest {
 
         //Given
         CustomerServiceAdaptor customerServiceAdaptor = new CustomerServiceAdaptor(CUSTOMER_SERVICE_URL);
+        //OrderSystemAdaptor orderSystemAdaptor = new OrderSystemAdaptor();
+
+        //temporary used DummyOrderSystemAdaptor to instantiate the OrderReviewService
         DummyOrderSystemAdaptor dummyOrderSystemAdaptor = new DummyOrderSystemAdaptor();
         OrderReviewService orderReviewService =
                 new OrderReviewService(customerServiceAdaptor, dummyOrderSystemAdaptor);
