@@ -4,10 +4,11 @@
     <artifactId>OrderReviewApp</artifactId>
     <name>OrderReviewApp</name>
     <description>wonderful app</description>
+    <version>1.0.1</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.3.5.RELEASE</version>
+        <version>1.4.2.RELEASE</version>
     </parent>
 
     <properties>

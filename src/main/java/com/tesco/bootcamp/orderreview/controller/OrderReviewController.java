@@ -1,5 +1,6 @@
 package com.tesco.bootcamp.orderreview.controller;
 
+import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,14 @@ public class OrderReviewController {
   @RequestMapping("/order-review")
   public void getOrdersToReview(Model model,
       @RequestParam(value = "loginID", required = true) String loginID) {
-    model.addAttribute("customerName", orderReviewService.getCustomerName(loginID));
 
-  }
+    Customer customer = orderReviewService.getCustomerName(loginID);
+
+    int customerID = customer.getId();
+    String customerName = customer.getCustomerName().getFullName();
+
+    model.addAttribute("customerName", customerName);
+    model.addAttribute("customerOrders", orderReviewService.getOrderList(customerID));
+    }
+
 }
