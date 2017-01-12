@@ -1,4 +1,6 @@
 import com.tesco.bootcamp.orderreview.controller.OrderReviewController;
+import com.tesco.bootcamp.orderreview.representations.Customer;
+import com.tesco.bootcamp.orderreview.representations.CustomerName;
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.junit.Rule;
 import org.junit.Test;
@@ -11,7 +13,8 @@ import org.springframework.ui.Model;
 public class OrderReviewControllerTest {
 
   public static final String CUSTOMER_NAME_FIELD_ID = "customerName";
-  public static final String CUSTOMER_NAME = "Mr Richy";
+  public static final Customer CUSTOMER = new Customer(1, new CustomerName("Joe", "Blogs"));
+  public static final String CUSTOMER_FULL_NAME = CUSTOMER.getCustomerName().getFullName();
   public static final String LOGIN_ID = "123434";
 
   @Mock
@@ -28,14 +31,14 @@ public class OrderReviewControllerTest {
 
     //Given
     OrderReviewController orderReviewController = new OrderReviewController(orderReviewService);
-    Mockito.when(orderReviewService.getCustomerName(LOGIN_ID)).thenReturn(CUSTOMER_NAME);
+    Mockito.when(orderReviewService.getCustomerName(LOGIN_ID)).thenReturn(CUSTOMER);
 
     //When
     orderReviewController.getOrdersToReview(model, LOGIN_ID);
 
     //Then
     Mockito.verify(orderReviewService).getCustomerName(LOGIN_ID);
-    Mockito.verify(model).addAttribute(CUSTOMER_NAME_FIELD_ID, orderReviewService.getCustomerName(LOGIN_ID));
+    Mockito.verify(model).addAttribute(CUSTOMER_NAME_FIELD_ID, CUSTOMER_FULL_NAME);
   }
 
 }

@@ -5,6 +5,37 @@
     <title>Customer Order Review</title>
 </head>
 <body>
-    <p th:text="'Customer Name: ' + ${customerName}" />
+
+    <h1>Customer Order Review</h1>
+
+    <h2 th:text="'Customer Name: ' + ${customerName}" />
+
+    <table>
+
+        <tr th:each="customerOrder : ${customerOrders}">
+            <br />
+            <td th:text="'Order Number: ' + ${customerOrder.id}">Order Number: 999999999</td>
+            <td th:text="'Ordered Date: ' + ${customerOrder.orderDateTime}">Ordered Date: xxxxxxxxxx</td>
+            <td th:text="'Destination: ' + ${customerOrder.orderDestination.latitude} + '/' + ${customerOrder.orderDestination.longitude}">Destination: 1/1</td>
+
+            <table border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                </tr>
+
+                <tr th:each="product : ${customerOrder.products}">
+                    <td th:text="${product.name}">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
+                    <td th:text="${product.category}">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
+                </tr>
+
+            </table>
+            <td th:text="'(Product Count: ' + ${customerOrder.products.size()} + ')'">Products: 999999999</td>
+            <br />
+        </tr>
+    </table>
+
+
+
 </body>
 </html>
