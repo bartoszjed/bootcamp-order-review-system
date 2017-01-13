@@ -12,11 +12,12 @@
 
     <table>
 
-        <tr th:each="customerOrder : ${customerOrders}">
+        <tr th:each="customerOrder : ${customerOrderData}">
             <br />
             <td th:text="'Order Number: ' + ${customerOrder.id}">Order Number: 999999999</td>
-            <td th:text="'Ordered Date: ' + ${customerOrder.orderDateTime}">Ordered Date: xxxxxxxxxx</td>
-            <td th:text="'Destination: ' + ${customerOrder.orderDestination.latitude} + '/' + ${customerOrder.orderDestination.longitude}">Destination: 1/1</td>
+            <td th:text="'Order Date: ' + ${customerOrder.orderDateTime}">Ordered Date: xxxxxxxxxx</td>
+            <td th:text="'Order Status: ' + ${customerOrder.orderStatus}">Order Status: xxxxxxxxxx</td>
+
 
             <table border="1">
                 <tr>
