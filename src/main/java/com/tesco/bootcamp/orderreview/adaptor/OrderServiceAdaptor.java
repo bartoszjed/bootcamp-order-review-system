@@ -13,12 +13,12 @@ import java.util.List;
 
 @Component
 @EnableAutoConfiguration
-public class RealOrderSystemAdaptor implements OrderSystemAdaptor{
+public class OrderServiceAdaptor implements OrderSystemAdaptor{
 
     private String orderAPIUrl;
 
     @Autowired
-    public RealOrderSystemAdaptor(@Qualifier("orderServiceURL") String url) {
+    public OrderServiceAdaptor(@Qualifier("orderServiceURL") String url) {
         this.orderAPIUrl = url;
     }
 
