@@ -38,8 +38,7 @@ public class CustomerServiceAdaptor {
                     });
             return collectRequestResult.getBody();
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
