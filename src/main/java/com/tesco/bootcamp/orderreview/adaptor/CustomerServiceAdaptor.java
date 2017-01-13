@@ -1,8 +1,9 @@
-package com.tesco.bootcamp.orderreview.adapters;
+package com.tesco.bootcamp.orderreview.adaptor;
 
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +15,11 @@ import org.springframework.web.client.RestTemplate;
  */
 
 @Component
+@EnableAutoConfiguration
+
 public class CustomerServiceAdaptor {
 
-    private String customerApiURi = null;
-
-    public CustomerServiceAdaptor() {
-    }
+    private String customerApiURi;
 
     @Autowired
     public CustomerServiceAdaptor(@Qualifier("customerServiceURL") String url) {
