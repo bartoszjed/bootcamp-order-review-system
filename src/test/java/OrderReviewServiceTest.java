@@ -1,6 +1,6 @@
 import com.tesco.bootcamp.orderreview.adaptor.CustomerServiceAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.DummyOrderSystemAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.RealOrderSystemAdaptor;
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerName;
 import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
@@ -68,7 +68,7 @@ public class OrderReviewServiceTest {
     public void shouldReturnListOfOrdersForGivenCustomerId() {
 
         //Given
-        OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor, new DummyOrderSystemAdaptor());
+        OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor, new RealOrderSystemAdaptor(""));
 
         //When
         List<CustomerOrder> customerOrderList = orderReviewService.getOrderList(CUSTOMER_ID);
