@@ -5,6 +5,7 @@ import com.tesco.bootcamp.orderreview.adaptor.OrderStatusAPIAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
+import com.tesco.bootcamp.orderreview.representations.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -16,13 +17,15 @@ public class OrderReviewService {
 
     private final CustomerServiceAdaptor customerAdapter;
     private final OrderSystemAdaptor orderSystemAdaptor;
-//    private final OrderStatusAPIAdaptor orderStatusAPIAdaptor;
+    private final OrderStatusAPIAdaptor orderStatusAPIAdaptor;
 
     @Autowired
-    public OrderReviewService(CustomerServiceAdaptor customerAdapter, OrderSystemAdaptor orderSystemAdaptor) {
+    public OrderReviewService(CustomerServiceAdaptor customerAdapter,
+                              OrderSystemAdaptor orderSystemAdaptor,
+                              OrderStatusAPIAdaptor orderStatusAPIAdaptor) {
         this.customerAdapter = customerAdapter;
         this.orderSystemAdaptor = orderSystemAdaptor;
-//        this.orderStatusAPIAdaptor = orderStatusAPIAdaptor;
+        this.orderStatusAPIAdaptor = orderStatusAPIAdaptor;
     }
 
     public Customer getCustomerName(String loginID) {
@@ -32,4 +35,7 @@ public class OrderReviewService {
     public List<CustomerOrder> getOrderList(int customerID) {
         return orderSystemAdaptor.call(customerID);
     }
+
+    public OrderStatus getOrderStatus(String orderId){ return orderStatusAPIAdaptor.call(orderId);}
+
 }
