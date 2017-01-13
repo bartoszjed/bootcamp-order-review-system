@@ -20,15 +20,16 @@ import org.springframework.web.client.RestTemplate;
 public class CustomerServiceAdaptor {
 
     private String customerApiURi;
+    private RestTemplate restTemplate;
 
     @Autowired
-    public CustomerServiceAdaptor(@Qualifier("customerServiceURL") String url) {
+    public CustomerServiceAdaptor(@Qualifier("customerServiceURL") String url,
+                                  @Qualifier("restTemplate") RestTemplate restTemplate) {
         this.customerApiURi = url;
+        this.restTemplate = restTemplate;
     }
 
     public Customer call(String loginID) {
-        RestTemplate restTemplate = new RestTemplate();
-
         try {
             ResponseEntity<Customer> collectRequestResult = restTemplate.exchange(
                     customerApiURi + "/customer?login=" + loginID + "&password=Password!23",
