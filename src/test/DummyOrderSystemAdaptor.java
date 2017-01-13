@@ -1,12 +1,14 @@
 package com.tesco.bootcamp.orderreview.adaptor;
 
 import com.tesco.bootcamp.orderreview.representations.*;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("Dummy")
+@EnableAutoConfiguration
 public class DummyOrderSystemAdaptor implements OrderSystemAdaptor {
 
     public DummyOrderSystemAdaptor() {
