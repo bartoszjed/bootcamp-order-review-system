@@ -4,7 +4,7 @@
 https://hellokoding.com/spring-boot-hello-world-example-with-thymeleaf/
 
 ## What you'll need
-- JDK 1.7 or later
+- JDK 1.8 or later
 - Maven 3 or later
 
 ## Stack

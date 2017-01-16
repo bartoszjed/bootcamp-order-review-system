@@ -4,7 +4,7 @@
     <artifactId>OrderReviewApp</artifactId>
     <name>OrderReviewApp</name>
     <description>wonderful app</description>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -12,7 +12,7 @@
     </parent>
 
     <properties>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
