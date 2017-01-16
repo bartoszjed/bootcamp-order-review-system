@@ -1,4 +1,5 @@
 import com.tesco.bootcamp.orderreview.adaptor.CustomerServiceAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.OrderStatusAPIAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.junit.Rule;
@@ -30,6 +31,9 @@ public class CustomerServiceAdaptorTest {
     @Mock
     OrderSystemAdaptor orderSystemAdaptor;
 
+    @Mock
+    OrderStatusAPIAdaptor orderStatusAPIAdaptor;
+
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
@@ -43,7 +47,7 @@ public class CustomerServiceAdaptorTest {
         mockCustomerServiceCall(server);
 
         //When
-        OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor, orderSystemAdaptor);
+        OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor, orderSystemAdaptor, orderStatusAPIAdaptor );
         String expectedCustomerFullName = orderReviewService.getCustomerName(LOGIN_ID).getCustomerName().getFullName();
 
         //Then
