@@ -21,6 +21,7 @@ public class WebApplicationConfiguration {
     }
 
 
+
     @Value("${orderAPI.url}")
     private String orderServiceURL;
 
@@ -28,6 +29,18 @@ public class WebApplicationConfiguration {
     public String orderServiceURLMethod(){
         return orderServiceURL;
     }
+
+
+
+    @Value("${orderStatusAPI.url}")
+    private String orderStatusServiceURL;
+
+    @Bean(name = "orderStatusServiceURL")
+    public String orderStatusServiceURLMethod(){
+        return orderStatusServiceURL;
+    }
+
+
 
     @Bean(name = "dummy")
     @Primary
