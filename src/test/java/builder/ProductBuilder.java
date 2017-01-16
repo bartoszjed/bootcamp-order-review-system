@@ -2,9 +2,6 @@ package builder;
 
 import com.tesco.bootcamp.orderreview.representations.Product;
 
-/**
- * Created by manindrajha on 11/01/2017.
- */
 public final class ProductBuilder {
     private String name;
     private String category;
@@ -27,7 +24,6 @@ public final class ProductBuilder {
     }
 
     public Product build() {
-        Product product = new Product(name, category);
-        return product;
+        return new Product(name, category);
     }
 }

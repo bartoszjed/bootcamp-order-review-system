@@ -34,8 +34,6 @@ public class OrderReviewController {
 
     model.addAttribute("customerName", customerName);
 
-    //model.addAttribute("customerOrders", orderReviewService.getOrderList(customerID));
-
     // Concatenate the Orders with their respective delivery status.
     List<CustomerOrderData> customerOrderData = new ArrayList();
     for (CustomerOrder i :orderReviewService.getOrderList(customerID) ) {

@@ -2,9 +2,6 @@ package builder;
 
 import com.tesco.bootcamp.orderreview.representations.OrderDestination;
 
-/**
- * Created by manindrajha on 11/01/2017.
- */
 public final class OrderDestinationBuilder {
     private double latitude;
     private double longitude;
@@ -27,7 +24,6 @@ public final class OrderDestinationBuilder {
     }
 
     public OrderDestination build() {
-        OrderDestination orderDestination = new OrderDestination(latitude, longitude);
-        return orderDestination;
+        return new OrderDestination(latitude, longitude);
     }
 }

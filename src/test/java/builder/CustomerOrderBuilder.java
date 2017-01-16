@@ -7,9 +7,6 @@ import com.tesco.bootcamp.orderreview.representations.Product;
 
 import java.util.List;
 
-/**
- * Created by manindrajha on 11/01/2017.
- */
 public final class CustomerOrderBuilder {
     private String id;
     private Customer customer;
@@ -50,7 +47,6 @@ public final class CustomerOrderBuilder {
     }
 
     public CustomerOrder build() {
-        CustomerOrder customerOrder = new CustomerOrder(id, customer, productList, orderDestination, orderDateAndTime);
-        return customerOrder;
+        return new CustomerOrder(id, customer, productList, orderDestination, orderDateAndTime);
     }
 }

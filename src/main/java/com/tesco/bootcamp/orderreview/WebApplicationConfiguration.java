@@ -6,9 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by Bartosz Jedrzejczak on 11/01/2017.
- */
 @Configuration
 public class WebApplicationConfiguration {
 
@@ -42,6 +39,7 @@ public class WebApplicationConfiguration {
 
 
 
+    @SuppressWarnings("SameReturnValue")
     @Bean(name = "dummy")
     @Primary
     public String dummy(){

@@ -3,13 +3,10 @@ package com.tesco.bootcamp.orderreview.representations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Created by manindrajha on 11/01/2017.
- */
 public class OrderDestination {
 
-    private double latitude;
-    private double longitude;
+    private final double latitude;
+    private final double longitude;
 
     @JsonCreator
     public OrderDestination(@JsonProperty("latitude") double latitude, @JsonProperty("longitude") double longitude) {

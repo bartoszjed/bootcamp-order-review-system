@@ -2,17 +2,14 @@ package com.tesco.bootcamp.orderreview.representations;
 
 import java.util.List;
 
-/**
- * Created by xm39 on 13/01/2017.
- */
 public class CustomerOrderData {
 
-    private String id;
-    private List<Product> products;
-    private String orderDateTime;
-    private String orderStatus;
+    private final String id;
+    private final List<Product> products;
+    private final String orderDateTime;
+    private final String orderStatus;
 
-    public CustomerOrderData(String id, List<Product> products, String orderDateTime, String orderStatus) {
+    public CustomerOrderData(String id, List<Product> products, String orderDateTime, @SuppressWarnings("SameParameterValue") String orderStatus) {
         this.id = id;
         this.products = products;
         this.orderDateTime = orderDateTime;

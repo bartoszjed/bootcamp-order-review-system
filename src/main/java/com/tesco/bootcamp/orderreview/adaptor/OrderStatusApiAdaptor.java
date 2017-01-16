@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class OrderStatusAPIAdaptor {
+public class OrderStatusApiAdaptor {
 
-    private String orderStatusAPIURI;
-    private RestTemplate restTemplate;
+    private final String orderStatusApiUrl;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public OrderStatusAPIAdaptor(@Qualifier("orderStatusServiceURL") String url,
+    public OrderStatusApiAdaptor(@Qualifier("orderStatusServiceURL") String url,
                                  @Qualifier("restTemplate") RestTemplate restTemplate) {
-        this.orderStatusAPIURI = url;
+        this.orderStatusApiUrl = url;
         this.restTemplate = restTemplate;
     }
 
@@ -26,7 +26,7 @@ public class OrderStatusAPIAdaptor {
         //RestTemplate restTemplate = new RestTemplate();
         try {
             ResponseEntity<OrderStatus> collectRequestResult = restTemplate.exchange(
-                    orderStatusAPIURI + "/order-status?orderId=" + orderId,
+                    orderStatusApiUrl + "/order-status?orderId=" + orderId,
                     HttpMethod.GET,
                     null,
                     new ParameterizedTypeReference<OrderStatus>() {

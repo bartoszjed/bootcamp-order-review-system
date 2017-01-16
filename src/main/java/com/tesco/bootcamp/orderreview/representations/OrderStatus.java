@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class OrderStatus {
 
-    private String orderId;
-    private String status;
+    private final String orderId;
+    private final String status;
 
     @JsonCreator
     public OrderStatus(@JsonProperty("orderId") String orderId, @JsonProperty("status") String status) {
