@@ -1,54 +1,64 @@
-/**
- * Created by maheshnakum on 12/01/2017.
- */
+import com.tesco.bootcamp.orderreview.adaptor.CustomerServiceAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
+import com.tesco.bootcamp.orderreview.service.OrderReviewService;
+import org.junit.Rule;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.RestTemplate;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.springframework.test.web.client.ExpectedCount.once;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+
 public class CustomerServiceAdaptorTest {
 
-
-    public static final String CUSTOMER_NAME = "Ellie Hill";
-    public static final String LOGIN_ID = "EllieHill3";
+    public static final String CUSTOMER_NAME = "Anna Cooper";
+    public static final String LOGIN_ID = "AnnaCooper1";
     public static final String CUSTOMER_SERVICE_URL = "http://customers.dev-environment.tesco.codurance.io:8080";
 
+    @Mock
+    RestTemplate restTemplate;
 
-//    @Mock
-//    RestTemplate restTemplate;
-//
-//    @Rule
-//    public MockitoRule mockitoRule = MockitoJUnit.rule();
+    @Mock
+    OrderSystemAdaptor orderSystemAdaptor;
 
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-//    @Test
-//    public void shouldReturnValidCustomerNameWhenCustomerLoginIDIsPassed() {
-//
-//        //Given
-//        CustomerServiceAdaptor customerServiceAdaptor = new CustomerServiceAdaptor(CUSTOMER_SERVICE_URL);
-//        //OrderSystemAdaptor orderSystemAdaptor = new OrderSystemAdaptor();
-//
-//        //temporary used DummyOrderSystemAdaptor to instantiate the OrderReviewService
-//        DummyOrderSystemAdaptor dummyOrderSystemAdaptor = new DummyOrderSystemAdaptor();
-//        OrderReviewService orderReviewService =
-//                new OrderReviewService(customerServiceAdaptor, dummyOrderSystemAdaptor);
-//
-//        //When
-//        Customer expectedCustomer = orderReviewService.getCustomerName(LOGIN_ID);
-//        String customerName = expectedCustomer.getCustomerName().getFullName();
-//
-//        //Then
-//        assertThat(customerName, is(CUSTOMER_NAME));
-//    }
+    @Test
+    public void shouldReturnValidCustomerNameWhenCustomerLoginIDIsPassed() {
 
-//    @Test
-//    public void shouldReturnValidCustomerNameWhenCustomerLoginIDIsPassedNew() {
-//
-//        RestTemplate restTemplate = new RestTemplate()
-//        MockRestServiceServer server = MockRestServiceServer.bindTo(restTemplate).build();
-//
-//        server.expect(manyTimes(), requestTo("EllieHill3")).andExpect(method(HttpMethod.GET))
-//                .andRespond(withSuccess("{ \"id\" : \"3\", \"name\" : \"Ellie Hill\"}", MediaType.APPLICATION_JSON));
-//
-//        //Hotel hotel = restTemplate.getForObject("/hotels/{id}", Hotel.class, 42);
-//        // Use the hotel instance...
-//
-//        // Verify all expectations met
-//        server.verify();
-//    }
+        //Given
+        RestTemplate restTemplate = new RestTemplate();
+        CustomerServiceAdaptor customerServiceAdaptor = new CustomerServiceAdaptor(CUSTOMER_SERVICE_URL, restTemplate);
+        MockRestServiceServer server = MockRestServiceServer.bindTo(restTemplate).build();
+        mockCustomerServiceCall(server);
+
+        //When
+        OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor, orderSystemAdaptor);
+        String expectedCustomerFullName = orderReviewService.getCustomerName(LOGIN_ID).getCustomerName().getFullName();
+
+        //Then
+        assertThat(expectedCustomerFullName, is(CUSTOMER_NAME));
+    }
+
+    private void mockCustomerServiceCall(MockRestServiceServer server) {
+        server.expect(once(), requestTo(CUSTOMER_SERVICE_URL + "/customer?login=" + LOGIN_ID + "&password=Password!23"))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess("{\n" +
+                        "  \"id\": 1,\n" +
+                        "  \"name\": {\n" +
+                        "    \"firstName\": \"Anna\",\n" +
+                        "    \"surname\": \"Cooper\"\n" +
+                        "  }\n" +
+                        "}", MediaType.APPLICATION_JSON));
+    }
 }
