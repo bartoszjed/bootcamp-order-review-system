@@ -1,13 +1,12 @@
 package com.tesco.bootcamp.orderreview.service;
 
-import com.tesco.bootcamp.orderreview.adaptor.CustomerServiceAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.OrderStatusAPIAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.CustomerApiAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.OrderApiAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.OrderStatusApiAdaptor;
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
 import com.tesco.bootcamp.orderreview.representations.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,17 +14,17 @@ import java.util.List;
 @Component
 public class OrderReviewService {
 
-    private final CustomerServiceAdaptor customerAdapter;
-    private final OrderSystemAdaptor orderSystemAdaptor;
-    private final OrderStatusAPIAdaptor orderStatusAPIAdaptor;
+    private final CustomerApiAdaptor customerAdapter;
+    private final OrderApiAdaptor orderApiAdaptor;
+    private final OrderStatusApiAdaptor orderStatusApiAdaptor;
 
     @Autowired
-    public OrderReviewService(CustomerServiceAdaptor customerAdapter,
-                              OrderSystemAdaptor orderSystemAdaptor,
-                              OrderStatusAPIAdaptor orderStatusAPIAdaptor) {
+    public OrderReviewService(CustomerApiAdaptor customerAdapter,
+                              OrderApiAdaptor orderApiAdaptor,
+                              OrderStatusApiAdaptor orderStatusApiAdaptor) {
         this.customerAdapter = customerAdapter;
-        this.orderSystemAdaptor = orderSystemAdaptor;
-        this.orderStatusAPIAdaptor = orderStatusAPIAdaptor;
+        this.orderApiAdaptor = orderApiAdaptor;
+        this.orderStatusApiAdaptor = orderStatusApiAdaptor;
     }
 
     public Customer getCustomerName(String loginID) {
@@ -33,9 +32,9 @@ public class OrderReviewService {
     }
 
     public List<CustomerOrder> getOrderList(int customerID) {
-        return orderSystemAdaptor.call(customerID);
+        return orderApiAdaptor.call(customerID);
     }
 
-    public OrderStatus getOrderStatus(String orderId){ return orderStatusAPIAdaptor.call(orderId);}
+    public OrderStatus getOrderStatus(String orderId){ return orderStatusApiAdaptor.call(orderId);}
 
 }

@@ -1,6 +1,6 @@
 package com.tesco.bootcamp.orderreview.adaptor;
 
-import com.tesco.bootcamp.orderreview.representations.Customer;
+import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,33 +9,28 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-/**
- * Created by Bartosz Jedrzejczak on 11/01/2017.
- */
+import java.util.List;
 
 @Component
 @EnableAutoConfiguration
+public class OrderApiAdaptor{
 
-public class CustomerServiceAdaptor {
-
-    private String customerApiURi;
-    private RestTemplate restTemplate;
+    private final String orderApiUrl;
 
     @Autowired
-    public CustomerServiceAdaptor(@Qualifier("customerServiceURL") String url,
-                                  @Qualifier("restTemplate") RestTemplate restTemplate) {
-        this.customerApiURi = url;
-        this.restTemplate = restTemplate;
+    public OrderApiAdaptor(@Qualifier("orderServiceURL") String url) {
+        this.orderApiUrl = url;
     }
 
-    public Customer call(String loginID) {
+    public List<CustomerOrder> call(int customerId) {
+        RestTemplate restTemplate = new RestTemplate();
+
         try {
-            ResponseEntity<Customer> collectRequestResult = restTemplate.exchange(
-                    customerApiURi + "/customer?login=" + loginID + "&password=Password!23",
+            ResponseEntity<List<CustomerOrder>> collectRequestResult = restTemplate.exchange(
+                    orderApiUrl + "/ghs/orders/customer?customerId=" + customerId,
                     HttpMethod.GET,
                     null,
-                    new ParameterizedTypeReference<Customer>() {
+                    new ParameterizedTypeReference<List<CustomerOrder>>() {
                     });
             return collectRequestResult.getBody();
 
@@ -44,3 +39,4 @@ public class CustomerServiceAdaptor {
         }
     }
 }
+

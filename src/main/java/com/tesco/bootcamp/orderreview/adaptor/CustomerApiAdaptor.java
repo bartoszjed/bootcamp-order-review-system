@@ -1,6 +1,6 @@
 package com.tesco.bootcamp.orderreview.adaptor;
 
-import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
+import com.tesco.bootcamp.orderreview.representations.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -9,28 +9,29 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import java.util.List;
 
 @Component
 @EnableAutoConfiguration
-public class OrderServiceAdaptor implements OrderSystemAdaptor{
 
-    private String orderAPIUrl;
+public class CustomerApiAdaptor {
+
+    private final String customerApiUrl;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public OrderServiceAdaptor(@Qualifier("orderServiceURL") String url) {
-        this.orderAPIUrl = url;
+    public CustomerApiAdaptor(@Qualifier("customerServiceURL") String url,
+                              @Qualifier("restTemplate") RestTemplate restTemplate) {
+        this.customerApiUrl = url;
+        this.restTemplate = restTemplate;
     }
 
-    public List<CustomerOrder> call(int customerId) {
-        RestTemplate restTemplate = new RestTemplate();
-
+    public Customer call(String loginID) {
         try {
-            ResponseEntity<List<CustomerOrder>> collectRequestResult = restTemplate.exchange(
-                    orderAPIUrl + "/ghs/orders/customer?customerId=" + customerId,
+            ResponseEntity<Customer> collectRequestResult = restTemplate.exchange(
+                    customerApiUrl + "/customer?login=" + loginID + "&password=Password!23",
                     HttpMethod.GET,
                     null,
-                    new ParameterizedTypeReference<List<CustomerOrder>>() {
+                    new ParameterizedTypeReference<Customer>() {
                     });
             return collectRequestResult.getBody();
 
@@ -39,4 +40,3 @@ public class OrderServiceAdaptor implements OrderSystemAdaptor{
         }
     }
 }
-

@@ -1,6 +1,6 @@
-import com.tesco.bootcamp.orderreview.adaptor.CustomerServiceAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.OrderStatusAPIAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.OrderSystemAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.CustomerApiAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.OrderApiAdaptor;
+import com.tesco.bootcamp.orderreview.adaptor.OrderStatusApiAdaptor;
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-public class CustomerServiceAdaptorTest {
+public class CustomerApiAdaptorTest {
 
     public static final String CUSTOMER_NAME = "Anna Cooper";
     public static final String LOGIN_ID = "AnnaCooper1";
@@ -29,10 +29,10 @@ public class CustomerServiceAdaptorTest {
     RestTemplate restTemplate;
 
     @Mock
-    OrderSystemAdaptor orderSystemAdaptor;
+    OrderApiAdaptor orderApiAdaptor;
 
     @Mock
-    OrderStatusAPIAdaptor orderStatusAPIAdaptor;
+    OrderStatusApiAdaptor orderStatusApiAdaptor;
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
@@ -42,12 +42,12 @@ public class CustomerServiceAdaptorTest {
 
         //Given
         RestTemplate restTemplate = new RestTemplate();
-        CustomerServiceAdaptor customerServiceAdaptor = new CustomerServiceAdaptor(CUSTOMER_SERVICE_URL, restTemplate);
+        CustomerApiAdaptor customerApiAdaptor = new CustomerApiAdaptor(CUSTOMER_SERVICE_URL, restTemplate);
         MockRestServiceServer server = MockRestServiceServer.bindTo(restTemplate).build();
         mockCustomerServiceCall(server);
 
         //When
-        OrderReviewService orderReviewService = new OrderReviewService(customerServiceAdaptor, orderSystemAdaptor, orderStatusAPIAdaptor );
+        OrderReviewService orderReviewService = new OrderReviewService(customerApiAdaptor, orderApiAdaptor, orderStatusApiAdaptor);
         String expectedCustomerFullName = orderReviewService.getCustomerName(LOGIN_ID).getCustomerName().getFullName();
 
         //Then

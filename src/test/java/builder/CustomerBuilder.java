@@ -3,9 +3,6 @@ package builder;
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerName;
 
-/**
- * Created by manindrajha on 11/01/2017.
- */
 public final class CustomerBuilder {
     private int id;
     private CustomerName customerName;
@@ -28,7 +25,6 @@ public final class CustomerBuilder {
     }
 
     public Customer build() {
-        Customer customer = new Customer(id, customerName);
-        return customer;
+        return new Customer(id, customerName);
     }
 }

@@ -6,16 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-/**
- * Created by manindrajha on 11/01/2017.
- */
 public class CustomerOrder {
 
-    private String id;
-    private Customer customer;
-    private List<Product> products;
-    private OrderDestination orderDestination;
-    private String orderDateTime;
+    private final String id;
+    private final Customer customer;
+    private final List<Product> products;
+    private final OrderDestination orderDestination;
+    private final String orderDateTime;
 
     @JsonCreator
     public CustomerOrder(@JsonProperty("id") String id,

@@ -2,9 +2,6 @@ package builder;
 
 import com.tesco.bootcamp.orderreview.representations.CustomerName;
 
-/**
- * Created by manindrajha on 11/01/2017.
- */
 public final class CustomerNameBuilder {
     private String firstName;
     private String surname;
@@ -27,7 +24,6 @@ public final class CustomerNameBuilder {
     }
 
     public CustomerName build() {
-        CustomerName customerName = new CustomerName(firstName, surname);
-        return customerName;
+        return new CustomerName(firstName, surname);
     }
 }
