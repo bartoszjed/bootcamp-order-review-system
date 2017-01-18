@@ -41,7 +41,6 @@ public class OrderReviewController {
             String orderId = i.getId();
             String orderStatus = orderReviewService.getOrderStatus(orderId).getStatus();
             customerOrderData.add(new CustomerOrderData(orderId, i.getProducts(), i.getOrderDateTime(), orderStatus));
-            //customerOrderData.add(new CustomerOrderData(orderId, i.getProducts(), i.getOrderDateTime(), "Picked"));
         }
 
         model.addAttribute("customerOrderData", customerOrderData);
