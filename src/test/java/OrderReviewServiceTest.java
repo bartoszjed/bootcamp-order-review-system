@@ -5,6 +5,7 @@ import com.tesco.bootcamp.orderreview.adaptor.OrderStatusApiAdaptor;
 import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerName;
 import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
+import com.tesco.bootcamp.orderreview.representations.OrderStatus;
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.junit.Before;
 import org.junit.Rule;
@@ -41,7 +42,7 @@ public class OrderReviewServiceTest {
     private OrderReviewService orderReviewService;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         orderReviewService = new OrderReviewService(customerApiAdaptor, orderApiAdaptor, orderStatusApiAdaptor);
     }
 
@@ -79,5 +80,17 @@ public class OrderReviewServiceTest {
         //Then
         assertTrue(firstOrderList.size() == 0);
         assertTrue(secondOrderList.size() > 0);
+    }
+
+    @Test
+    public void should_return_an_order_status_for_given_order_ids() {
+        String orderId = "a7291e84-0802-41fc-b899-300fcefa3b51";
+        OrderStatus orderStatus = new OrderStatus(orderId, "Delivered");
+        Mockito.when(orderStatusApiAdaptor.call(orderId))
+                .thenReturn(orderStatus);
+
+        OrderStatus returnedOrderStatus = orderReviewService.getOrderStatus(orderId);
+
+        assertThat(returnedOrderStatus.getOrderId(), is(orderId));
     }
 }
