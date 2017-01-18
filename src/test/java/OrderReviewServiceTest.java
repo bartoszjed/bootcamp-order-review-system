@@ -1,3 +1,4 @@
+import builder.CustomerOrderBuilder;
 import com.tesco.bootcamp.orderreview.adaptor.CustomerApiAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.OrderApiAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.OrderStatusApiAdaptor;
@@ -5,6 +6,7 @@ import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerName;
 import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -36,13 +38,18 @@ public class OrderReviewServiceTest {
 
     @Rule
     public MockitoRule mockitoRule = MockitoJUnit.rule();
+    private OrderReviewService orderReviewService;
+
+    @Before
+    public void setUp(){
+        orderReviewService = new OrderReviewService(customerApiAdaptor, orderApiAdaptor, orderStatusApiAdaptor);
+    }
 
     @Test
     public void shouldReturnCustomerNameWhenCustomerIDIsPassed() {
 
         //Given (mocking conditions)
         Mockito.when(customerApiAdaptor.call(LOGIN_ID)).thenReturn(CUSTOMER);
-        OrderReviewService orderReviewService = new OrderReviewService(customerApiAdaptor, orderApiAdaptor, orderStatusApiAdaptor);
 
         //When
         Customer expectedCustomer = orderReviewService.getCustomerName(LOGIN_ID);
@@ -50,34 +57,27 @@ public class OrderReviewServiceTest {
         //Then
         Mockito.verify(customerApiAdaptor).call(LOGIN_ID);   //verifies if the mock was called with given customer_id
         assertThat(expectedCustomer, is(CUSTOMER));
-
-    }
-
-    @Test
-    public void shouldReturnEmptyListOfOrdersForGivenCustomerId() {
-
-        //Given
-        Mockito.when(orderApiAdaptor.call(CUSTOMER_ID)).thenReturn(new ArrayList<CustomerOrder>());
-        OrderReviewService orderReviewService = new OrderReviewService(customerApiAdaptor, orderApiAdaptor, orderStatusApiAdaptor);
-
-        //When
-        List<CustomerOrder> customerOrderList = orderReviewService.getOrderList(CUSTOMER_ID);
-
-        //Then
-        assertTrue(customerOrderList.size() == 0);
     }
 
     @Test
     public void shouldReturnListOfOrdersForGivenCustomerId() {
 
         //Given
-        Mockito.when(orderApiAdaptor.call(CUSTOMER_ID)).thenReturn(new ArrayList<CustomerOrder>());
-        OrderReviewService orderReviewService = new OrderReviewService(customerApiAdaptor, new OrderApiAdaptor(""), orderStatusApiAdaptor);
+        CustomerOrder customerOrderDummy = CustomerOrderBuilder.aCustomerOrder()
+                .build();
+        List<CustomerOrder> customerOrderListDummy = new ArrayList<>();
+        customerOrderListDummy.add(customerOrderDummy);
+        Mockito.when(orderApiAdaptor.call(CUSTOMER_ID))
+                .thenReturn(new ArrayList<>())
+                .thenReturn(customerOrderListDummy);
 
         //When
-        List<CustomerOrder> customerOrderList = orderReviewService.getOrderList(CUSTOMER_ID);
+        List<CustomerOrder> firstOrderList = orderReviewService.getOrderList(CUSTOMER_ID);
+        List<CustomerOrder> secondOrderList = orderReviewService.getOrderList(CUSTOMER_ID);
+
 
         //Then
-        assertTrue(orderReviewService.getOrderList(CUSTOMER_ID).size() > 0);
+        assertTrue(firstOrderList.size() == 0);
+        assertTrue(secondOrderList.size() > 0);
     }
 }
