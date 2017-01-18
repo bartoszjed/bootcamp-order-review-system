@@ -1,6 +1,5 @@
-import com.tesco.bootcamp.orderreview.adaptor.CustomerApiAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.OrderApiAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.OrderStatusApiAdaptor;
+package com.tesco.bootcamp.orderreview.adaptor;
+
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.junit.Rule;
 import org.junit.Test;

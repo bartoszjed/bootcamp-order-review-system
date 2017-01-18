@@ -1,3 +1,5 @@
+package com.tesco.bootcamp.orderreview.service;
+
 import builder.CustomerOrderBuilder;
 import com.tesco.bootcamp.orderreview.adaptor.CustomerApiAdaptor;
 import com.tesco.bootcamp.orderreview.adaptor.OrderApiAdaptor;
@@ -6,7 +8,6 @@ import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerName;
 import com.tesco.bootcamp.orderreview.representations.CustomerOrder;
 import com.tesco.bootcamp.orderreview.representations.OrderStatus;
-import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
