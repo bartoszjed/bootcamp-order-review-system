@@ -25,7 +25,6 @@ public class OrderStatusApiAdaptor {
     }
 
     public OrderStatus call(String orderId) {
-        //RestTemplate restTemplate = new RestTemplate();
         try {
             ResponseEntity<OrderStatus> collectRequestResult = restTemplate.exchange(
                     orderStatusApiUrl + "/order-status?orderId=" + orderId,
@@ -38,10 +37,9 @@ public class OrderStatusApiAdaptor {
         } catch (ResourceAccessException re) {
             return new OrderStatus(orderId, "Not available");
 
-        } catch(HttpClientErrorException he2){
-            return new OrderStatus(orderId, "Error: "+he2.getStatusCode());
-        }
-        catch (Exception e) {
+        } catch (HttpClientErrorException he2) {
+            return new OrderStatus(orderId, "Error: " + he2.getStatusCode());
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
