@@ -8,11 +8,11 @@ import com.tesco.bootcamp.orderreview.representations.Product;
 import java.util.List;
 
 public final class CustomerOrderBuilder {
-    private String id;
+    private String id = "a7291e84-0802-41fc-b899-300fcefa3b51";
     private Customer customer;
     private List<Product> productList;
     private OrderDestination orderDestination;
-    private String orderDateAndTime;
+    private String orderDateAndTime = "2017-01-12T20:00:00.000+0000";
 
     private CustomerOrderBuilder() {
     }

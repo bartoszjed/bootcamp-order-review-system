@@ -3,8 +3,8 @@ package builder;
 import com.tesco.bootcamp.orderreview.representations.CustomerName;
 
 public final class CustomerNameBuilder {
-    private String firstName;
-    private String surname;
+    private String firstName = "Joe";
+    private String surname = "Blogs";
 
     private CustomerNameBuilder() {
     }
