@@ -39,9 +39,8 @@ public class OrderReviewController {
         List<CustomerOrderData> customerOrderData = new ArrayList<>();
         for (CustomerOrder i : orderReviewService.getOrderList(customerID)) {
             String orderId = i.getId();
-            //String orderStatus = orderReviewService.getOrderStatus(orderId).getStatus();
-            //customerOrderData.add(new CustomerOrderData(orderId, i.getProducts(), i.getOrderDateTime(), orderStatus));
-            customerOrderData.add(new CustomerOrderData(orderId, i.getProducts(), i.getOrderDateTime(), "Picked"));
+            String orderStatus = orderReviewService.getOrderStatus(orderId).getStatus();
+            customerOrderData.add(new CustomerOrderData(orderId, i.getProducts(), i.getOrderDateTime(), orderStatus));
         }
 
         model.addAttribute("customerOrderData", customerOrderData);
