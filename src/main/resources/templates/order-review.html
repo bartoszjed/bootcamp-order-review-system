@@ -14,8 +14,6 @@
 
         <tr th:each="customerOrder : ${customerOrderData}">
             <br />
-            <td th:text="'Order Number: ' + ${customerOrder.id}">Order Number: 999999999</td>
-            <td th:text="'Order Date: ' + ${customerOrder.orderDateTime}">Ordered Date: xxxxxxxxxx</td>
             <td th:text="'Order Status: ' + ${customerOrder.orderStatus}">Order Status: xxxxxxxxxx</td>
 
 
@@ -31,7 +29,6 @@
                 </tr>
 
             </table>
-            <td th:text="'(Product Count: ' + ${customerOrder.products.size()} + ')'">Products: 999999999</td>
             <br />
         </tr>
     </table>
