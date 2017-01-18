@@ -37,7 +37,11 @@ public class OrderStatusApiAdaptor {
 
         } catch (ResourceAccessException re) {
             return new OrderStatus(orderId, "Not available");
-        } catch (Exception e) {
+
+        } catch(HttpClientErrorException he2){
+            return new OrderStatus(orderId, "Error: "+he2.getStatusCode());
+        }
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
