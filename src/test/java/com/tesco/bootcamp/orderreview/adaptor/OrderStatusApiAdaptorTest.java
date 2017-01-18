@@ -18,15 +18,14 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 public class OrderStatusApiAdaptorTest {
 
-    public final String ORDER_STATUS_URL = "http://customers.dev-environment.tesco.codurance.io:8080";
-    private OrderStatusApiAdaptor orderStatusApiAdaptor;
-    public static final String ORDER_ID = "a7291e84-0802-41fc-b899-300fcefa3b51";
-    private RestTemplate restTemplate;
+    private static final String ORDER_STATUS_URL = "http://OrderStatusUrl.com";
+    private static final String ORDER_ID = "a7291e84-0802-41fc-b899-300fcefa3b51";
 
+    private OrderStatusApiAdaptor orderStatusApiAdaptor;
 
     @Before
     public void setUp() {
-        restTemplate = new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
         orderStatusApiAdaptor = new OrderStatusApiAdaptor(ORDER_STATUS_URL, restTemplate);
         MockRestServiceServer server = MockRestServiceServer.bindTo(restTemplate).build();
         mockOrderStatusService(server);
@@ -39,6 +38,7 @@ public class OrderStatusApiAdaptorTest {
 
         assertThat(returnedOrderStatus.getOrderId(), is(ORDER_ID));
         assertThat(returnedOrderStatus.getStatus(), is("Delivered"));
+
     }
 
     private void mockOrderStatusService(MockRestServiceServer server) {

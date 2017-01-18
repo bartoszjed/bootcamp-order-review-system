@@ -22,7 +22,7 @@ public class CustomerApiAdaptorTest {
 
     public static final String CUSTOMER_NAME = "Anna Cooper";
     public static final String LOGIN_ID = "AnnaCooper1";
-    public static final String CUSTOMER_SERVICE_URL = "http://customers.dev-environment.tesco.codurance.io:8080";
+    public static final String CUSTOMER_SERVICE_URL = "http://CustomerService.coms";
 
     @Mock
     RestTemplate restTemplate;
