@@ -3,8 +3,8 @@ package builder;
 import com.tesco.bootcamp.orderreview.representations.Product;
 
 public final class ProductBuilder {
-    private String name;
-    private String category;
+    private String name = "Apple Pie";
+    private String category = "Cakes";
 
     private ProductBuilder() {
     }

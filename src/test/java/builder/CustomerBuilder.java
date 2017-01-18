@@ -4,7 +4,7 @@ import com.tesco.bootcamp.orderreview.representations.Customer;
 import com.tesco.bootcamp.orderreview.representations.CustomerName;
 
 public final class CustomerBuilder {
-    private int id;
+    private int id = 15;
     private CustomerName customerName;
 
     private CustomerBuilder() {

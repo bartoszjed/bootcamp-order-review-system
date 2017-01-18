@@ -3,8 +3,8 @@ package builder;
 import com.tesco.bootcamp.orderreview.representations.OrderDestination;
 
 public final class OrderDestinationBuilder {
-    private double latitude;
-    private double longitude;
+    private double latitude = 51.613453;
+    private double longitude = -0.112499;
 
     private OrderDestinationBuilder() {
     }
