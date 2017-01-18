@@ -7,6 +7,8 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 @Component
@@ -33,6 +35,8 @@ public class OrderStatusApiAdaptor {
                     });
             return collectRequestResult.getBody();
 
+        } catch (ResourceAccessException re) {
+            return new OrderStatus(orderId, "Not available");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
