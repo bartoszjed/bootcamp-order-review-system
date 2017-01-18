@@ -1,6 +1,5 @@
-import com.tesco.bootcamp.orderreview.adaptor.CustomerApiAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.OrderApiAdaptor;
-import com.tesco.bootcamp.orderreview.adaptor.OrderStatusApiAdaptor;
+package com.tesco.bootcamp.orderreview.adaptor;
+
 import com.tesco.bootcamp.orderreview.service.OrderReviewService;
 import org.junit.Rule;
 import org.junit.Test;
@@ -23,7 +22,7 @@ public class CustomerApiAdaptorTest {
 
     public static final String CUSTOMER_NAME = "Anna Cooper";
     public static final String LOGIN_ID = "AnnaCooper1";
-    public static final String CUSTOMER_SERVICE_URL = "http://customers.dev-environment.tesco.codurance.io:8080";
+    public static final String CUSTOMER_SERVICE_URL = "http://CustomerService.coms";
 
     @Mock
     RestTemplate restTemplate;
