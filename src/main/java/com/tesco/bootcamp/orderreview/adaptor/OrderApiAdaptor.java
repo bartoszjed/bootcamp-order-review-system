@@ -16,14 +16,16 @@ import java.util.List;
 public class OrderApiAdaptor{
 
     private final String orderApiUrl;
+    private final RestTemplate restTemplate;
 
     @Autowired
-    public OrderApiAdaptor(@Qualifier("orderServiceURL") String url) {
+    public OrderApiAdaptor(@Qualifier("orderServiceURL") String url,
+                           @Qualifier("restTemplate") RestTemplate restTemplate) {
         this.orderApiUrl = url;
+        this.restTemplate = restTemplate;
     }
 
     public List<CustomerOrder> call(int customerId) {
-        RestTemplate restTemplate = new RestTemplate();
 
         try {
             ResponseEntity<List<CustomerOrder>> collectRequestResult = restTemplate.exchange(
